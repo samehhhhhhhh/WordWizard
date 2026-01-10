@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 int main()
 {
@@ -6,12 +7,12 @@ int main()
         sf::VideoMode({800, 600}),
         "WordWizard - The game"
     );
-
+    sf::Texture mage_image("tile018.png");
+    sf::Sprite mage(mage_image);
     window.setFramerateLimit(60);
 
-    sf::CircleShape circle(50.f);
-    circle.setFillColor(sf::Color::Green);
-    circle.setPosition({375.f, 275.f});
+    int x = 10;
+    int y = 10;
 
     while (window.isOpen())
     {
@@ -21,8 +22,18 @@ int main()
                 window.close();
         }
 
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+            x += 5;
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
+            x -= 5;
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z))
+            y -= 5;
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+            y += 5;
+        
+        mage.setPosition({x, y});
         window.clear(sf::Color::Black);
-        window.draw(circle);
+        window.draw(mage);
         window.display();
     }
 
