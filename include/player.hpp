@@ -10,12 +10,13 @@ class player{
         int animation_frame{ 0};
         int animation_speed{ 5}; // Lower is faster    
         int animation_index = { 0};
-        float x = 10;
+        
         std::stringstream ss;
-        float y = 10;
+        
 
     public:
-
+        float x = 10;
+        float y = 10;
         player() : mage(mage_image){
             mage.setTexture(mage_image);
         }
