@@ -8,7 +8,7 @@ class player{
         sf::Texture mage_image;
         sf::Sprite mage;
         int animation_frame{ 0};
-        int animation_speed{ 10}; // Lower is faster    
+        int animation_speed{ 5}; // Lower is faster    
         int animation_index = { 0};
         float x = 10;
         std::stringstream ss;

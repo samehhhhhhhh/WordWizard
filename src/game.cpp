@@ -20,6 +20,7 @@ void game::run() {
         m_player.movement();
         m_level.draw_bottom(window);
         m_player.update(window);
+        m_level.draw_top(window);
         
         
         window.display();

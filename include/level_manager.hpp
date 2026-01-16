@@ -4,17 +4,17 @@
 #include <tmxlite/TileLayer.hpp>
 #include <tmxlite/ObjectGroup.hpp>
 #include <SFML/Graphics.hpp>
+
+
 class level_manager {
     tmx::Map map;
     
     public:
 
-
+    
     level_manager() {
         
         map.load("test_level.tmx");
-        
-        
         
     }
     
