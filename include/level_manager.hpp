@@ -3,16 +3,13 @@
 
 class level_manager {
     private:
-
-    
-
-    public:
-
     tmx::Map map;
     MapLayer *layerOne;
     MapLayer *layerTwo;
     MapLayer *layerThree;
-    
+
+    public:
+
     level_manager() {
 
         map.load("test_level.tmx");
@@ -27,7 +24,7 @@ class level_manager {
         delete layerThree;
     }
     
+    // Class Methods : 
     void draw_top(sf::RenderWindow & window);
     void draw_bottom(sf::RenderWindow & window);
-    bool check_collision(int & x, int & y);
 };
