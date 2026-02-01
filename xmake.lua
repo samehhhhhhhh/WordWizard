@@ -11,6 +11,6 @@ target("WordWizard")
     add_packages("sfml", "tmxlite")
 
     set_configdir("$(builddir)/$(plat)/$(arch)/$(mode)")
-    add_configfiles("assets/sprites/test_mage/mage/*.png", {onlycopy = true})
+    add_configfiles("assets/sprites/*.png", {onlycopy = true})
     add_configfiles("assets/level/Procedural_Rooms/*.tmx", {onlycopy = true})
     add_configfiles("assets/level/Procedural_Rooms/*.tsx", {onlycopy = true})

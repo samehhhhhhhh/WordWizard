@@ -1,11 +1,13 @@
-
 #include <SFML/Graphics.hpp>
 #include "SFMLOrthogonalLayer.hpp"
+#include "sprite_sheet.hpp"
+
 class player{
 
     private:
 
-        sf::Texture mage_image;
+        sf::Image da_image;
+        sf::Texture mage_texture;
         sf::Sprite mage;
 
         int sprite_width {mage.getScale().x};
@@ -13,6 +15,10 @@ class player{
         int animation_frame{ 0};
         int animation_speed{ 5}; // Lower is faster    
         int animation_index = { 0};
+
+
+        bool moving = false;
+        int side {0}; // Right 0, left 1
 
         tmx::Map map;
         MapLayer * collision_layer;
@@ -23,16 +29,19 @@ class player{
         float y = 10;
         
         sf::Vector2f movement_offset{0, 0};
-        
+
     public:
+
+        sprite_sheet* mage_sheet;
 
         sf::IntRect Hitbox {{x, y}, {mage.getScale().x, mage.getScale().y}};
 
         std::vector<sf::IntRect> collision_tiles;
 
-        player() : mage(mage_image){
+        player() : mage(mage_texture){
+            mage_sheet = new sprite_sheet("mage.png", 11, 16, 144);
 
-            mage.setTexture(mage_image);
+            mage.setTexture(mage_texture);
             map.load("test_level.tmx");
             collision_layer = new MapLayer(map, 3);
 
@@ -51,6 +60,10 @@ class player{
                     }
                 }
             }
+        }
+
+        ~player() {
+            delete mage_sheet;
         }
 
         // Class methods :
