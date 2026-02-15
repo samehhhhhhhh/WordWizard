@@ -7,7 +7,7 @@ https://www.sfml-dev.org/documentation/3.0.2/Mouse_8hpp.html
 /* Every weapon is to be seen in a circle around the player.*/
 
 #include <SFML/Graphics.hpp>
-
+#include <iostream>
 class weapon {
     sf::Vector2f player_coordinates;
     float* x = nullptr;
