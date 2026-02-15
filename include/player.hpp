@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "SFMLOrthogonalLayer.hpp"
 #include "sprite_sheet.hpp"
+#include "weapon.hpp"
 
 class player{
 
@@ -16,7 +17,6 @@ class player{
         int animation_speed{ 5}; // Lower is faster    
         int animation_index = { 0};
 
-
         bool moving = false;
         int side {0}; // Right 0, left 1
 
@@ -30,6 +30,8 @@ class player{
         
         sf::Vector2f movement_offset{0, 0};
 
+        weapon p_weapon;
+
     public:
 
         sprite_sheet* mage_sheet;
@@ -38,7 +40,9 @@ class player{
 
         std::vector<sf::IntRect> collision_tiles;
 
-        player() : mage(mage_texture){
+        player() : mage(mage_texture) {
+            std::cout << "Initializing player..." << std::endl;
+            
             mage_sheet = new sprite_sheet("mage.png", 11, 16, 144);
 
             mage.setTexture(mage_texture);
@@ -60,6 +64,7 @@ class player{
                     }
                 }
             }
+            p_weapon = weapon((*mage_sheet).get_sprite_images()[9], x, y);
         }
 
         ~player() {
@@ -74,6 +79,9 @@ class player{
         // Getters
         float get_x();
         float get_y();
+
+        
+        void set_weapon(weapon player_weapon);
 
         sf::Texture get_spriteImage();
         void collision_check();

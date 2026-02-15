@@ -6,11 +6,19 @@ void player::update(sf::RenderWindow &window) {
     collision_check();
 
     // Applying the movement offset to the player coordinates. TODO: ADD SPRINTING.
+    
     x += movement_offset.x;
     y += movement_offset.y;
     movement_offset = {0, 0};
     mage.setPosition({x, y});
+    
     window.draw(mage);
+    
+    p_weapon.update(window);
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space )) {
+        p_weapon.shoot(window);
+    }
 }
     
 void player::movement() {
@@ -45,7 +53,7 @@ void player::movement() {
     } if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift) ) { // Sprinting, basically making the speed 2 times faster.
         movement_offset.x = movement_offset.x * 2;  
         movement_offset.y = movement_offset.y * 2;  
-    }
+    } 
 
     // If enough frames have passed, increment the animation_index to the next keyframe in the animation sequence.
     if(animation_frame >= animation_speed) {
@@ -118,19 +126,6 @@ float player::get_y() {
 sf::Texture player::get_spriteImage() {
     return mage_texture;
 }
+void player::set_weapon(weapon player_weapon) {
 
-
-
-
-/*
-
-/////////////////////
-
-contain tools and algorithms to be used everywhere and make one that would return a struct i guess of sprite animation.
-
-the struct would have one image for standing up right
-4 vectors for movement of each direction
-4 vector for attack ? I guess in each direction
-And more...
-
-*/
+}

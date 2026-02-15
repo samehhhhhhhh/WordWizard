@@ -20,6 +20,9 @@ void game::run() {
                 window.close();
         }
 
+        
+
+
         view.setCenter({m_player.get_x(), m_player.get_y()});
         window.setView(view);
         window.clear(sf::Color::Black);
