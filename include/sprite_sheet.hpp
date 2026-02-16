@@ -20,14 +20,14 @@ class sprite_sheet {
 
         for(int keyframe_y = 0; keyframe_y <= sheet_size.y-height; keyframe_y += height) {
             
-            for(int keyframe_x = 2; keyframe_x <= block_offset-width; keyframe_x+= width+4) {
+            for(int keyframe_x = 2; keyframe_x <= block_offset-width; keyframe_x+= width+5) {
                 
                 std::vector<sf::Image> keyframes;
 
-                for(int key_frame_sequence = 0; key_frame_sequence < sheet_size.x/block_offset; key_frame_sequence++) {
+                for(int key_frame_sequence = 0; key_frame_sequence <= sheet_size.x/block_offset; key_frame_sequence++) {
                     
                     // Create temporary with the correct size before copying
-                    sf::Image temporary({width, height}, sf::Color::Transparent);
+                    sf::Image temporary({width, height});
                     temporary.copy(sheet_image, {0, 0}, sf::IntRect(sf::Vector2{keyframe_x + (key_frame_sequence * block_offset), keyframe_y}, sf::Vector2{width, height}));
                     keyframes.push_back(temporary);
                 }

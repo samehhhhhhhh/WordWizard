@@ -56,7 +56,7 @@ void weapon::draw(sf::RenderWindow & window) {
 
 void weapon::shoot(sf::RenderWindow & window) {
     // Calculate direction from weapon to mouse
-    sf::Vector2i mouse_pos_screen = sf::Mouse::getPosition(window); // or pass window
+    sf::Vector2i mouse_pos_screen = sf::Mouse::getPosition(window); 
     sf::Vector2f mouse_pos = window.mapPixelToCoords(mouse_pos_screen);
     
     sf::Vector2f direction{mouse_pos.x - draw_coordinates.x, mouse_pos.y - draw_coordinates.y};
