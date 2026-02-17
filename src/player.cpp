@@ -16,7 +16,7 @@ void player::update(sf::RenderWindow &window) {
     
     p_weapon.update(window);
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space )) {
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
         p_weapon.shoot(window);
     }
 }
@@ -85,9 +85,9 @@ void player::collision_check() {
 
     for(const auto i: collision_tiles) {
         if(Hitbox.findIntersection(i)) {
-            movement_offset = {0, 0};
+            movement_offset = {0 , 0};
         }  
-    }    
+    }     
     Hitbox.position = {x+20, y+50};
 }
 

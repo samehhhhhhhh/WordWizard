@@ -64,7 +64,7 @@ class player{
                     }
                 }
             }
-            p_weapon = weapon((*mage_sheet).get_sprite_images()[8], x, y);
+            p_weapon = weapon((*mage_sheet).get_sprite_images()[8], x, y, 5);
         }
 
         ~player() {

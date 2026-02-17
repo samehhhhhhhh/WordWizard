@@ -42,6 +42,7 @@ void weapon::draw(sf::RenderWindow & window) {
     // Sprite setup
     sf::Texture weapon_texture(anim_sequence[0]);
     sf::Sprite weapon_sprite(weapon_texture);
+    weapon_sprite.setScale({2.5, 2.5});
     weapon_sprite.setPosition(draw_coordinates);
     window.draw(weapon_sprite);
 
@@ -55,17 +56,26 @@ void weapon::draw(sf::RenderWindow & window) {
 }
 
 void weapon::shoot(sf::RenderWindow & window) {
-    // Calculate direction from weapon to mouse
-    sf::Vector2i mouse_pos_screen = sf::Mouse::getPosition(window); 
-    sf::Vector2f mouse_pos = window.mapPixelToCoords(mouse_pos_screen);
-    
-    sf::Vector2f direction{mouse_pos.x - draw_coordinates.x, mouse_pos.y - draw_coordinates.y};
-    float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
-    
-    if (length > 0) {
-        direction.x /= length;
-        direction.y /= length;
+
+    if(shoot_counter >= shoot_delay) {
+        // Calculate direction from weapon to mouse
+        sf::Vector2i mouse_pos_screen = sf::Mouse::getPosition(window); 
+        sf::Vector2f mouse_pos = window.mapPixelToCoords(mouse_pos_screen);
+        
+        sf::Vector2f direction{mouse_pos.x - draw_coordinates.x, mouse_pos.y - draw_coordinates.y};
+        float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+        
+        if (length > 0) {
+            direction.x /= length;
+            direction.y /= length;
+        }
+        
+        projectiles.push_back({draw_coordinates, direction});
+        shoot_counter = 0;
+    } else {
+        shoot_counter++;
     }
+
     
-    projectiles.push_back({draw_coordinates, direction});
+    
 }
