@@ -1,6 +1,6 @@
 
 #include "SFMLOrthogonalLayer.hpp"
-
+#pragma once
 class level_manager {
     private:
     tmx::Map map;

@@ -3,13 +3,15 @@
 #include "game.hpp"
 #include "player.hpp"
 #include "level_manager.hpp"
-
+#include "menu.hpp"
 void game::run() {
 
+    
     sf::View view;
     view.setSize({800.f, 600.f});
     level_manager m_level;
     player m_player;
+    menu_manager m_menu(window);
 
     while (window.isOpen())
     {
@@ -20,17 +22,20 @@ void game::run() {
                 window.close();
         }
 
-        
+        if(m_menu.get_in_menu()) {
+            m_menu.update();
+        } else {
+            view.setCenter({m_player.get_x(), m_player.get_y()});
+            window.setView(view);
+            window.clear(sf::Color::Black);
+            m_level.draw_bottom(window);
+            m_player.update(window);
+            m_level.draw_top(window);
+        }
 
-
-        view.setCenter({m_player.get_x(), m_player.get_y()});
-        window.setView(view);
-        window.clear(sf::Color::Black);
-        m_level.draw_bottom(window);
-        m_player.update(window);
-        m_level.draw_top(window);
+       
         
-      
+/*
         // Player Hitbox drawing.
         sf::RectangleShape hitbox(sf::Vector2f(30,30));
         hitbox.setPosition(sf::Vector2f(m_player.get_x(), m_player.get_y()+30));
@@ -45,7 +50,7 @@ void game::run() {
             collision_rect.setFillColor(sf::Color(255, 0, 0, 100)); // Red with transparency
             window.draw(collision_rect);
         }
-
+*/
 
         // De despley
         window.display(); 

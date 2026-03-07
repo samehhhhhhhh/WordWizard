@@ -1,34 +1,15 @@
 #include "player.hpp"
 
-void player::update(sf::RenderWindow &window) {
-    movement();
 
-    collision_check();
-
-    // Applying the movement offset to the player coordinates. TODO: ADD SPRINTING.
-    
-    x += movement_offset.x;
-    y += movement_offset.y;
-    movement_offset = {0, 0};
-    mage.setPosition({x, y});
-    
-    window.draw(mage);
-    
-    p_weapon.update(window);
-
-    if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
-        p_weapon.shoot(window);
-    }
-}
     
 void player::movement() {
 
     if(moving) {
         
-        da_image = (*mage_sheet).get_sprite_images()[9][animation_index];   
+        source_image = ent_sprite_sheet.get_sprite_images()[9][animation_index];   
         
     } else {
-        da_image = (*mage_sheet).get_sprite_images()[18][0];
+        source_image = ent_sprite_sheet.get_sprite_images()[18][0];
     }
     moving = false;
 
@@ -68,64 +49,14 @@ void player::movement() {
     
     // If the player's side should be left, flip the image horizontaly (By default the player image is always on the right.)
     if (side == 1) {
-        da_image.flipHorizontally();
+        source_image.flipHorizontally();
     }
 
     // Displaying the character and updating the animation frame.
-    mage_texture.loadFromImage(da_image);
-    mage.setTexture(mage_texture, true);
-    mage.setScale({2.5, 2.5});
+    ent_texture.loadFromImage(source_image);
+    ent_sprite.setTexture(ent_texture, true);
+    ent_sprite.setScale({2.5, 2.5});
     animation_frame++;
     
 }
 
-void player::collision_check() {
-    Hitbox.position = {x + movement_offset.x, y + movement_offset.y+30};
-    Hitbox.size = {static_cast<float>(mage_texture.getSize().x + 20), static_cast<float>(mage_texture.getSize().y)};
-
-    for(const auto i: collision_tiles) {
-        if(Hitbox.findIntersection(i)) {
-            movement_offset = {0 , 0};
-        }  
-    }     
-    Hitbox.position = {x+20, y+50};
-}
-
-// This took me so much time... I dont' need it anymore, i'll leave it here as a memory lol.
-bool player::check_collision(float x, float y) {
-    
-    const auto mapTileCount = map.getTileCount();
-    
-    // Getting the exact tile coordinate on the tmx map
-    const tmx::Vector2u tile_position {
-        static_cast<unsigned int>((x) / mapTileCount.x), 
-        static_cast<unsigned int>((y) / mapTileCount.y)
-    };
-
-    // incase the player is outside of the map.
-    if(tile_position.x > 3600 || tile_position.y > 3600 ) {
-        return true;
-
-    }
-
-    // Gets the tile at the given coordinates, if there is no collision tile, the returned tile ID would be 0
-    // If there is a collision tile, we would get an ID.
-    tmx::TileLayer::Tile tile = (*collision_layer).getTile(tile_position.x, tile_position.y);
-
-    return tile.ID != 0;
-}
-
-float player::get_x() {
-    return x;
-}
-
-float player::get_y() {
-    return y;
-}
-
-sf::Texture player::get_spriteImage() {
-    return mage_texture;
-}
-void player::set_weapon(weapon player_weapon) {
-
-}
