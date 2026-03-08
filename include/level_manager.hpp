@@ -1,28 +1,19 @@
 
 #include "SFMLOrthogonalLayer.hpp"
 #pragma once
+#include <memory>
+
 class level_manager {
     private:
     tmx::Map map;
-    MapLayer *layerOne;
-    MapLayer *layerTwo;
-    MapLayer *layerThree;
+    std::unique_ptr<MapLayer> layerOne;
+    std::unique_ptr<MapLayer> layerTwo;
+    std::unique_ptr<MapLayer> layerThree;
+    std::unique_ptr<MapLayer> layerTop;
 
     public:
 
-    level_manager() {
-
-        map.load("test_level.tmx");
-        layerOne = new MapLayer(map, 0);
-        layerTwo = new MapLayer(map, 1);
-        layerThree = new MapLayer(map, 3);
-    }
-    ~level_manager() {
-
-        delete layerOne;
-        delete layerTwo;
-        delete layerThree;
-    }
+    level_manager();
     
     // Class Methods : 
     void draw_top(sf::RenderWindow & window);

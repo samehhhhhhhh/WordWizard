@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "SFMLOrthogonalLayer.hpp"
 #include "sprite_sheet.hpp"
 #include "weapon.hpp"
@@ -40,18 +41,22 @@ class entity_base{
 
         std::vector<sf::IntRect> collision_tiles;
 
-        entity_base(std::string path, int a, int b, int c) : ent_sprite(ent_texture), ent_sprite_sheet(path, a, b, b) {
+        entity_base(std::string path, int a, int b, int c) : ent_sprite(ent_texture), ent_sprite_sheet(path, a, b, c) {
 
             ent_sprite.setTexture(ent_texture);
-            map.load("test_level.tmx");
+            if (!map.load("assets/level/Procedural_Rooms/test_level.tmx")) {
+                std::cerr << "ERROR: Failed opening assets/level/Procedural_Rooms/test_level.tmx" << std::endl;
+                collision_layer = nullptr;
+                return;
+            }
             collision_layer = new MapLayer(map, 3);
 
             const auto mapTileCount = map.getTileCount();
             const auto TileSize = map.getTileSize();
 
-            for(int i = 0; i <= map.getTileCount().y;i++) { // y
+            for(int i = 0; i < static_cast<int>(mapTileCount.y); i++) { // y
 
-                for(int a = 0; a <= map.getTileCount().x;a++) { // x
+                for(int a = 0; a < static_cast<int>(mapTileCount.x); a++) { // x
 
                     tmx::TileLayer::Tile tile = (*collision_layer).getTile(a, i);
 

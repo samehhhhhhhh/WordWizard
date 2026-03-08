@@ -9,7 +9,7 @@ void player::movement() {
         source_image = ent_sprite_sheet.get_sprite_images()[9][animation_index];   
         
     } else {
-        source_image = ent_sprite_sheet.get_sprite_images()[18][0];
+        source_image = ent_sprite_sheet.get_sprite_images()[18][0]; // For some reason, out of bound now
     }
     moving = false;
 

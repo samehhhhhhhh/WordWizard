@@ -18,7 +18,7 @@ public :
 
     // Constructor
     menu_manager(sf::RenderWindow& game_window)
-     : font("Cinzel-Black.ttf"), text_ready(font) ,text(font), window(game_window) {
+     : font("assets/fonts/Cinzel-Black.ttf"), text_ready(font) ,text(font), window(game_window) {
 
         // Main menu game name title
         text.setString("Word Wizard !");

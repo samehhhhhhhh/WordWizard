@@ -10,4 +10,3 @@ target("WordWizard")
     add_files("src/*.cpp")
     add_packages("sfml", "tmxlite")
 
-    add_installfiles("assets/*", {prefixdir = "assets"})
