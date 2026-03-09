@@ -16,8 +16,6 @@ sprite_sheet::sprite_sheet(const std::filesystem::path& sheet_image_path,
         }
 
         const sf::Vector2u sheet_size = sheet_image.getSize();
-        std::cout << "Sprite sheet loading\n";
-        std::cout << "sheet size " << sheet_size.x << "x" << sheet_size.y << "\n";
 
         if (sheet_size.x < width || sheet_size.y < height) {
             std::cerr << "Sprite sheet too small for requested frame size\n";
@@ -53,17 +51,7 @@ sprite_sheet::sprite_sheet(const std::filesystem::path& sheet_image_path,
                         keyframes.push_back(frame);
                     }
                 }
-
-                
-                sprite_images.push_back(keyframes);
-                std::cout << "done \n";
-                
-            }
-            
-            
-            
-            
+                sprite_images.push_back(keyframes);   
+            } 
         }
-
-        std::cout << "Sprite sheet loaded (" << sprite_images.size() << " animations)\n";
     }

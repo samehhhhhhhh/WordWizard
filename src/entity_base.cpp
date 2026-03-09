@@ -25,15 +25,26 @@ void entity_base::update(sf::RenderWindow &window) {
     
 
 void entity_base::collision_check() {
-    Hitbox.position = {x + movement_offset.x, y + movement_offset.y+30};
-    Hitbox.size = {static_cast<float>(ent_texture.getSize().x + 20), static_cast<float>(ent_texture.getSize().y)};
+    Hitbox.size = {ent_texture.getSize().x * ent_sprite.getScale().x, ent_texture.getSize().y * ent_sprite.getScale().y};
+
+    Hitbox.position = {x + movement_offset.x, y};
+    
 
     for(const auto i: collision_tiles) {
         if(Hitbox.findIntersection(i)) {
-            movement_offset = {0 , 0};
+            movement_offset.x = 0;
         }  
     }     
-    Hitbox.position = {x+20, y+50};
+    
+    // For the vertical collision check : 
+    Hitbox.position = {x, y + movement_offset.y};
+
+    for(const auto i: collision_tiles) {
+        if(Hitbox.findIntersection(i)) {
+            movement_offset.y = 0;
+        }  
+        
+    }     
 }
 
 // This took me so much time... I dont' need it anymore, i'll leave it here as a memory lol.
@@ -59,7 +70,12 @@ bool entity_base::check_collision(float x, float y) {
 
     return tile.ID != 0;
 }
-
+float entity_base::get_hitsx() {
+    return Hitbox.size.x;
+}
+float entity_base::get_hitsy() {
+    return Hitbox.size.y;
+}
 float entity_base::get_x() {
     return x;
 }

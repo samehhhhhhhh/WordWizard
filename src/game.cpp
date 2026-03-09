@@ -35,11 +35,11 @@ void game::run() {
 
        
         
-/*
+
         // Player Hitbox drawing.
         sf::RectangleShape hitbox(sf::Vector2f(30,30));
-        hitbox.setPosition(sf::Vector2f(m_player.get_x(), m_player.get_y()+30));
-        hitbox.setSize(sf::Vector2f(m_player.get_spriteImage().getSize().x+20, m_player.get_spriteImage().getSize().y));
+        hitbox.setPosition(sf::Vector2f(m_player.get_x(), m_player.get_y()));
+        hitbox.setSize(sf::Vector2f(m_player.get_hitsx(), m_player.get_hitsy()));
         hitbox.setFillColor(sf::Color(255, 0, 0, 100)); // Green with transparency
         window.draw(hitbox);
 
@@ -50,7 +50,7 @@ void game::run() {
             collision_rect.setFillColor(sf::Color(255, 0, 0, 100)); // Red with transparency
             window.draw(collision_rect);
         }
-*/
+
 
         // De despley
         window.display(); 

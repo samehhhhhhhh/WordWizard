@@ -37,7 +37,7 @@ class entity_base{
 
         sprite_sheet ent_sprite_sheet;
 
-        sf::IntRect Hitbox {{x, y}, {ent_sprite.getScale().x, ent_sprite.getScale().y}};
+        sf::IntRect Hitbox;
 
         std::vector<sf::IntRect> collision_tiles;
 
@@ -67,6 +67,8 @@ class entity_base{
                 }
             }
             e_weapon = weapon(ent_sprite_sheet.get_sprite_images()[8], x, y, 5);
+
+            Hitbox = {{x, y}, {ent_sprite.getScale().x, ent_sprite.getScale().y}};
         }
 
 
@@ -78,6 +80,8 @@ class entity_base{
         // Getters
         float get_x();
         float get_y();
+        float get_hitsx();
+        float get_hitsy();
 
         sf::Texture get_spriteImage();
         void collision_check();

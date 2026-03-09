@@ -30,7 +30,7 @@ public :
         text.setFillColor(sf::Color::White);
 
         text_ready.setString("Press <Space> to start");
-        text_ready.setPosition({300, 300});
+        text_ready.setPosition({335, 300});
         text_ready.setCharacterSize(10);
         text_ready.setStyle(sf::Text::Bold);
         text_ready.setOutlineColor(sf::Color::Black);

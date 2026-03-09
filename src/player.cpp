@@ -1,7 +1,5 @@
 #include "player.hpp"
 
-
-    
 void player::movement() {
 
     if(moving) {
