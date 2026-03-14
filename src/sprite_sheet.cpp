@@ -3,8 +3,9 @@
 sprite_sheet::sprite_sheet(const std::filesystem::path& sheet_image_path,
                  unsigned int frame_width,
                  unsigned int frame_height,
-                 unsigned int block_offsetx)
-        : width(frame_width), height(frame_height), block_offset(block_offsetx) {
+                 unsigned int block_offsetx,
+                 unsigned int width_offsetx)
+        : width(frame_width), height(frame_height), block_offset(block_offsetx), width_offsetx(width_offsetx) {
         if (width == 0 || height == 0 || block_offset == 0) {
             std::cerr << "Invalid sprite sheet parameters: width/height/block_offset must be > 0\n";
             return;
@@ -31,8 +32,8 @@ sprite_sheet::sprite_sheet(const std::filesystem::path& sheet_image_path,
             // Fine up to here
             // iterate only across the first block to find each animation entry
             for (unsigned int keyframe_x = start_x;
-                 keyframe_x + width <= 144;
-                 keyframe_x += width+5) {
+                 keyframe_x + width <= block_offsetx;
+                 keyframe_x += width+width_offsetx) {
                 std::vector<sf::Image> keyframes{};
 
                 // collect one frame from each horizontal block at the same relative x

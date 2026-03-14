@@ -12,6 +12,7 @@ class sprite_sheet {
     unsigned int width{};
     unsigned int height{};
     unsigned int block_offset{};
+    unsigned int width_offsetx{};
 
     std::vector<std::vector<sf::Image>> sprite_images{};
 
@@ -19,7 +20,8 @@ public:
     sprite_sheet(const std::filesystem::path& sheet_image_path,
                  unsigned int frame_width,
                  unsigned int frame_height,
-                 unsigned int block_offsetx);
+                 unsigned int block_offsetx,
+                 unsigned int width_offsetx = 0);
         
         
 

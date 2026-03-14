@@ -9,7 +9,7 @@ class player : public entity_base{
 
     public:
 
-    player() : entity_base("assets/sprites/mage.png", 11, 16, 144) {}
+    player() : entity_base("assets/sprites/mage.png", 11, 16, 144, 5) {}
     void movement() override;
         
     };

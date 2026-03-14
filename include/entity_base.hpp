@@ -4,6 +4,7 @@
 #include "sprite_sheet.hpp"
 #include "weapon.hpp"
 
+#pragma once
 class entity_base{
 
     protected:
@@ -41,7 +42,7 @@ class entity_base{
 
         std::vector<sf::IntRect> collision_tiles;
 
-        entity_base(std::string path, int a, int b, int c) : ent_sprite(ent_texture), ent_sprite_sheet(path, a, b, c) {
+        entity_base(std::string path, int a, int b, int c, int d = 0) : ent_sprite(ent_texture), ent_sprite_sheet(path, a, b, c, d) {
 
             ent_sprite.setTexture(ent_texture);
             if (!map.load("assets/level/Procedural_Rooms/test_level.tmx")) {
