@@ -8,7 +8,6 @@ void weapon::update(sf::RenderWindow & window) {
 }
 
 void weapon::calculate_draw(sf::RenderWindow & window) {
-    if (!x || !y) return; // Safety check
 
     int circle_rayon {40};
     sf::Vector2i mouse_pos_screen = sf::Mouse::getPosition(window);

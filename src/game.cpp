@@ -3,6 +3,7 @@
 #include "game.hpp"
 #include "player.hpp"
 #include "level_manager.hpp"
+#include "enemy.hpp"
 #include "menu.hpp"
 void game::run() {
 
@@ -12,6 +13,7 @@ void game::run() {
     level_manager m_level;
     player m_player;
     menu_manager m_menu(window);
+    enemy m_enemy;
 
     while (window.isOpen())
     {
@@ -31,11 +33,12 @@ void game::run() {
             m_level.draw_bottom(window);
             m_player.update(window);
             m_level.draw_top(window);
+            m_enemy.update(window);
         }
 
        
         
-
+/*
         // Player Hitbox drawing.
         sf::RectangleShape hitbox(sf::Vector2f(30,30));
         hitbox.setPosition(sf::Vector2f(m_player.get_x(), m_player.get_y()));
@@ -50,7 +53,7 @@ void game::run() {
             collision_rect.setFillColor(sf::Color(255, 0, 0, 100)); // Red with transparency
             window.draw(collision_rect);
         }
-
+*/
 
         // De despley
         window.display(); 

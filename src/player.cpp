@@ -49,7 +49,7 @@ void player::movement() {
     if (side == 1) {
         source_image.flipHorizontally();
     }
-
+    
     // Displaying the character and updating the animation frame.
     ent_texture.loadFromImage(source_image);
     ent_sprite.setTexture(ent_texture, true);

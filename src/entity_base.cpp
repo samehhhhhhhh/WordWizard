@@ -16,11 +16,15 @@ void entity_base::update(sf::RenderWindow &window) {
     
     window.draw(ent_sprite);
     
-    e_weapon.update(window);
-
-    if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
-        e_weapon.shoot(window);
+    for(auto& i : ent_weapons) {
+        i.update(window);
+        if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+        i.shoot(window);
     }
+    }
+   
+
+    
 }
     
 
