@@ -7,10 +7,10 @@ void enemy::movement() {
 
     if(moving) {
         
-        source_image = ent_sprite_sheet.get_sprite_images()[9][animation_index];   
+        source_image = ent_sprite_sheet.get_sprite_images()[0][0];   
         
     } else {
-        source_image = ent_sprite_sheet.get_sprite_images()[18][0]; // For some reason, out of bound now
+        source_image = ent_sprite_sheet.get_sprite_images()[0][0]; // For some reason, out of bound now
     }
     moving = false;
 

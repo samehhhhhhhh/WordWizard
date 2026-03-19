@@ -32,7 +32,9 @@ class entity_base{
         
         sf::Vector2f movement_offset{0, 0};
 
-        weapon e_weapon;
+        std::vector<weapon> ent_weapons;
+
+        
 
     public:
 
@@ -42,7 +44,7 @@ class entity_base{
 
         std::vector<sf::IntRect> collision_tiles;
 
-        entity_base(std::string path, int a, int b, int c, int d = 0) : ent_sprite(ent_texture), ent_sprite_sheet(path, a, b, c, d) {
+        entity_base(std::string path, int a, int b, int c, int d = 0, int e = 0) : ent_sprite(ent_texture), ent_sprite_sheet(path, a, b, c, d, e) {
 
             ent_sprite.setTexture(ent_texture);
             if (!map.load("assets/level/Procedural_Rooms/test_level.tmx")) {
@@ -67,7 +69,7 @@ class entity_base{
                     }
                 }
             }
-            e_weapon = weapon(ent_sprite_sheet.get_sprite_images()[8], x, y, 5);
+            
 
             Hitbox = {{x, y}, {ent_sprite.getScale().x, ent_sprite.getScale().y}};
         }

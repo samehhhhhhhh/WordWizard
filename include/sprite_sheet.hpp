@@ -21,7 +21,8 @@ public:
                  unsigned int frame_width,
                  unsigned int frame_height,
                  unsigned int block_offsetx,
-                 unsigned int width_offsetx = 0);
+                 unsigned int width_offsetx = 0,
+                 unsigned int start_x_arg = 0);
         
         
 

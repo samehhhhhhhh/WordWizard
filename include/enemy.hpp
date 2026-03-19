@@ -7,7 +7,7 @@
 
 class enemy : public entity_base {
 public : 
-    enemy() : entity_base("assets/sprites/Orc.png", 1, 100, 100) {
+    enemy() : entity_base("assets/sprites/Orc.png", 100, 100, 100) {
         
     }
     void movement() override;
