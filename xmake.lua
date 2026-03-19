@@ -8,7 +8,8 @@ target("WordWizard")
     set_kind("binary")
 
     after_build(function (target)
-    os.cp("assets", target:targetdir())
+        import("core.project.config")
+        os.cp("assets", path.join(target:targetdir(), "assets"))
     end)
     
     add_files("src/*.cpp")
