@@ -19,7 +19,7 @@ public :
     }
     void movement() override;
     sf::Vector2f p_coordinates {0, 0};
-    int view_distance {100};
+    int view_distance {300};
     
 
     void detection();
