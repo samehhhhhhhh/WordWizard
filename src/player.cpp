@@ -51,6 +51,7 @@ void player::movement() {
     }
     
     // Displaying the character and updating the animation frame.
+    Hitbox.size = {ent_texture.getSize().x * ent_sprite.getScale().x,ent_texture.getSize().y * ent_sprite.getScale().y};
     ent_texture.loadFromImage(source_image);
     ent_sprite.setTexture(ent_texture, true);
     ent_sprite.setScale({2.5, 2.5});

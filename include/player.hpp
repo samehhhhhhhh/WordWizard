@@ -9,6 +9,7 @@ class player : public entity_base{
         e_weapon = weapon(ent_sprite_sheet.get_sprite_images()[8], x, y, 5);
 
         ent_weapons.push_back(e_weapon);
+        
     }
     void movement() override;
         

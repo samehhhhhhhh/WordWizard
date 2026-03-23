@@ -29,7 +29,7 @@ void entity_base::update(sf::RenderWindow &window) {
     
 
 void entity_base::collision_check() {
-    Hitbox.size = {ent_texture.getSize().x * ent_sprite.getScale().x, ent_texture.getSize().y * ent_sprite.getScale().y};
+    
 
     Hitbox.position = {x + movement_offset.x, y};
     
@@ -80,11 +80,11 @@ float entity_base::get_hitsx() {
 float entity_base::get_hitsy() {
     return Hitbox.size.y;
 }
-float entity_base::get_x() {
+float& entity_base::get_x() {
     return x;
 }
 
-float entity_base::get_y() {
+float& entity_base::get_y() {
     return y;
 }
 
