@@ -22,7 +22,9 @@ public:
                  unsigned int frame_height,
                  unsigned int block_offsetx,
                  unsigned int width_offsetx = 0,
-                 unsigned int start_x_arg = 0);
+                 unsigned int start_x_arg = 0,
+                 unsigned int x_offset = 0,
+                 unsigned int y_offset = 0);
         
         
 

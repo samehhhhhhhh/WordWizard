@@ -44,7 +44,7 @@ class entity_base{
 
         std::vector<sf::IntRect> collision_tiles;
 
-        entity_base(std::string path, int a, int b, int c, int d = 0, int e = 0) : ent_sprite(ent_texture), ent_sprite_sheet(path, a, b, c, d, e) {
+        entity_base(std::string path, int a, int b, int c, int d = 0, int e = 0,int f = 0, int g = 0) : ent_sprite(ent_texture), ent_sprite_sheet(path, a, b, c, d, e, f, g) {
 
             ent_sprite.setTexture(ent_texture);
             if (!map.load("assets/level/Procedural_Rooms/test_level.tmx")) {
@@ -81,8 +81,8 @@ class entity_base{
         bool check_collision(float x, float y); // For specific coordinates with a tile ... Kind of deprecated.
 
         // Getters
-        float get_x();
-        float get_y();
+        float& get_x();
+        float& get_y();
         float get_hitsx();
         float get_hitsy();
 

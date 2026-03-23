@@ -13,7 +13,7 @@ void game::run() {
     level_manager m_level;
     player m_player;
     menu_manager m_menu(window);
-    enemy m_enemy;
+    enemy m_enemy(m_player.get_x(), m_player.get_y());
 
     while (window.isOpen())
     {
@@ -32,19 +32,28 @@ void game::run() {
             window.clear(sf::Color::Black);
             m_level.draw_bottom(window);
             m_player.update(window);
-            m_level.draw_top(window);
             m_enemy.update(window);
+            m_level.draw_top(window);
+            
         }
 
-       
+        // enemy
+       sf::RectangleShape hitbox(sf::Vector2f(30,30));
+        hitbox.setPosition(sf::Vector2f(m_enemy.get_x(), m_enemy.get_y()));
+        hitbox.setSize(sf::Vector2f(m_enemy.get_hitsx(), m_enemy.get_hitsy()));
+        hitbox.setFillColor(sf::Color(255, 0, 0, 100)); // Green with transparency
+        window.draw(hitbox);
+
+        // player
+        sf::RectangleShape hitbox_x(sf::Vector2f(30,30));
+        hitbox_x.setPosition(sf::Vector2f(m_player.get_x(), m_player.get_y()));
+        hitbox_x.setSize(sf::Vector2f(m_player.get_hitsx(), m_player.get_hitsy()));
+        hitbox_x.setFillColor(sf::Color(255, 0, 0, 100)); // Green with transparency
+        window.draw(hitbox_x);
         
 /*
         // Player Hitbox drawing.
-        sf::RectangleShape hitbox(sf::Vector2f(30,30));
-        hitbox.setPosition(sf::Vector2f(m_player.get_x(), m_player.get_y()));
-        hitbox.setSize(sf::Vector2f(m_player.get_hitsx(), m_player.get_hitsy()));
-        hitbox.setFillColor(sf::Color(255, 0, 0, 100)); // Green with transparency
-        window.draw(hitbox);
+        
 
         // Collision tiles hitbox drawing.
         for (const auto& tile : m_player.collision_tiles) {
