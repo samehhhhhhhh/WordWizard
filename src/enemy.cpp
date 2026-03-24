@@ -8,7 +8,7 @@ void enemy::movement() {
     detection();
     if(moving) {
         
-        source_image = ent_sprite_sheet.get_sprite_images()[1][animation_index];   
+        source_image = animations_vec[0][0];   
 
         sf::Vector2f movement_offset_a = {p_x-x, p_y-y};
         movement_offset_a = movement_offset_a / 100.f;  

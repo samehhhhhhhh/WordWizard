@@ -36,7 +36,7 @@ void game::run() {
             m_level.draw_top(window);
             
         }
-/*
+
         // enemy
        sf::RectangleShape hitbox(sf::Vector2f(30,30));
         hitbox.setPosition(sf::Vector2f(m_enemy.get_x(), m_enemy.get_y()));
@@ -62,7 +62,7 @@ void game::run() {
             collision_rect.setFillColor(sf::Color(255, 0, 0, 100)); // Red with transparency
             window.draw(collision_rect);
         }
-*/
+
 
         // De despley
         window.display(); 

@@ -5,9 +5,7 @@ sprite_sheet::sprite_sheet(const std::filesystem::path& sheet_image_path,
                  unsigned int frame_height,
                  unsigned int block_offsetx,
                  unsigned int width_offsetx,
-                 unsigned int start_x_arg,
-                 unsigned int x_offset,
-                 unsigned int y_offset)
+                 unsigned int start_x_arg)
         : width(frame_width), height(frame_height), block_offset(block_offsetx), width_offsetx(width_offsetx) {
         /* if (width == 0 || height == 0 || block_offset == 0) {
             std::cerr << "Invalid sprite sheet parameters: width/height/block_offset must be > 0\n";
@@ -46,7 +44,7 @@ sprite_sheet::sprite_sheet(const std::filesystem::path& sheet_image_path,
                     frame.resize({width, height}, sf::Color::Transparent);
 
                     const sf::IntRect src_rect{
-                        {static_cast<int>(seq_x+x_offset), static_cast<int>(keyframe_y+y_offset)},
+                        {static_cast<int>(seq_x), static_cast<int>(keyframe_y)},
                         {static_cast<int>(frame_width), static_cast<int>(frame_height)}
                     };
 

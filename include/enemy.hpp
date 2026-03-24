@@ -10,11 +10,14 @@ class enemy : public entity_base {
 public : 
     float& p_x;
     float& p_y;
-    enemy(float& player_x, float& player_y) : entity_base("assets/sprites/Orc.png", 100, 100, 100,0, 0, 44, 42), p_x(player_x),
+    std::vector<std::vector<sf::Image>> animations_vec;
+    enemy(float& player_x, float& player_y) : entity_base("assets/sprites/Orc.png", 100, 100, 100,0, 0), p_x(player_x),
     p_y(player_y) {
         x= 500;
         y = 500;
         Hitbox.size = {44, 42};
+
+        std::vector<std::vector<sf::Image>> animations_vec = correct_sprite({22, 15},{ 44, 42});
         
     }
     void movement() override;

@@ -51,6 +51,27 @@ void entity_base::collision_check() {
     }     
 }
 
+std::vector<std::vector<sf::Image>> entity_base::correct_sprite(sf::Vector2u size, sf::Vector2u position_offset) {
+
+    auto sprite_sheet_vec = ent_sprite_sheet.get_sprite_images();
+    for(auto& row : sprite_sheet_vec) {
+        for(auto& image : row) {
+            sf::Image new_image;
+            const sf::IntRect src_rect{
+                {static_cast<int>(position_offset.x), static_cast<int>(position_offset.y)},
+                {static_cast<int>(size.x), static_cast<int>(size.y)}
+            };
+            new_image.copy(image, {0, 0}, src_rect);
+            image = new_image;
+        }
+    }
+
+
+    return sprite_sheet_vec;
+
+
+}
+
 // This took me so much time... I dont' need it anymore, i'll leave it here as a memory lol.
 bool entity_base::check_collision(float x, float y) {
     

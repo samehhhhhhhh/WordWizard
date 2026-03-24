@@ -3,7 +3,7 @@
 #include "SFMLOrthogonalLayer.hpp"
 #include "sprite_sheet.hpp"
 #include "weapon.hpp"
-
+#include <vector>
 #pragma once
 class entity_base{
 
@@ -33,18 +33,19 @@ class entity_base{
         sf::Vector2f movement_offset{0, 0};
 
         std::vector<weapon> ent_weapons;
+        sprite_sheet ent_sprite_sheet;
+        std::vector<std::vector<sf::Image>> correct_sprite(sf::Vector2u size, sf::Vector2u position_offset);
 
         
 
     public:
 
-        sprite_sheet ent_sprite_sheet;
 
         sf::IntRect Hitbox;
 
         std::vector<sf::IntRect> collision_tiles;
 
-        entity_base(std::string path, int a, int b, int c, int d = 0, int e = 0,int f = 0, int g = 0) : ent_sprite(ent_texture), ent_sprite_sheet(path, a, b, c, d, e, f, g) {
+        entity_base(std::string path, int a, int b, int c, int d = 0, int e = 0) : ent_sprite(ent_texture), ent_sprite_sheet(path, a, b, c, d, e) {
 
             ent_sprite.setTexture(ent_texture);
             if (!map.load("assets/level/Procedural_Rooms/test_level.tmx")) {
