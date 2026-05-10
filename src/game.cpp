@@ -13,7 +13,7 @@ void game::run() {
     level_manager m_level;
     player m_player;
     menu_manager m_menu(window);
-    enemy m_enemy(m_player.get_x(), m_player.get_y());
+    enemy m_enemy(m_player.get_x(), m_player.get_y(), 2);
 
     while (window.isOpen())
     {

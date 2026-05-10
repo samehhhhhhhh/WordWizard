@@ -56,12 +56,27 @@ std::vector<std::vector<sf::Image>> entity_base::correct_sprite(sf::Vector2u siz
     auto sprite_sheet_vec = ent_sprite_sheet.get_sprite_images();
     for(auto& row : sprite_sheet_vec) {
         for(auto& image : row) {
-            sf::Image new_image;
+            const auto image_size = image.getSize();
+            if (image_size.x == 0 || image_size.y == 0) {
+                std::cerr << "correct_sprite: skipping empty image\n";
+                continue;
+            }
+            if (position_offset.x + size.x > image_size.x || position_offset.y + size.y > image_size.y) {
+                std::cerr << "correct_sprite: src_rect out of bounds (img=" << image_size.x
+                          << "x" << image_size.y << ", offset=" << position_offset.x
+                          << "," << position_offset.y << ", size=" << size.x
+                          << "x" << size.y << ")\n";
+                continue;
+            }
+            sf::Image new_image(size);
             const sf::IntRect src_rect{
                 {static_cast<int>(position_offset.x), static_cast<int>(position_offset.y)},
                 {static_cast<int>(size.x), static_cast<int>(size.y)}
             };
-            new_image.copy(image, {0, 0}, src_rect);
+            if (!new_image.copy(image, {0, 0}, src_rect)) {
+                std::cerr << "correct_sprite: copy failed for src_rect\n";
+                continue;
+            }
             image = new_image;
         }
     }

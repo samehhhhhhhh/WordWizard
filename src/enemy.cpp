@@ -8,15 +8,16 @@ void enemy::movement() {
     detection();
     if(moving) {
         
-        source_image = animations_vec[0][0];   
+        source_image = animations_vec[0][animation_index];   
 
         sf::Vector2f movement_offset_a = {p_x-x, p_y-y};
         movement_offset_a = movement_offset_a / 100.f;  
-        movement_offset_a.normalized();
+        movement_offset_a = movement_offset_a.normalized() * speed;
         movement_offset = movement_offset_a;
         
     } else {
-        source_image = ent_sprite_sheet.get_sprite_images()[0][0]; // For some reason, out of bound now
+        source_image = animations_vec[0][0]; // For some reason, out of bound now
+        movement_offset = {0, 0};
     }
     moving = false;
 
@@ -67,3 +68,7 @@ void enemy::detection() {
     // Rect
 
 }
+
+// MAKE A HEALTH BAR !  
+
+

@@ -7,10 +7,10 @@ sprite_sheet::sprite_sheet(const std::filesystem::path& sheet_image_path,
                  unsigned int width_offsetx,
                  unsigned int start_x_arg)
         : width(frame_width), height(frame_height), block_offset(block_offsetx), width_offsetx(width_offsetx) {
-        /* if (width == 0 || height == 0 || block_offset == 0) {
+        if (width == 0 || height == 0 || block_offset == 0) {
             std::cerr << "Invalid sprite sheet parameters: width/height/block_offset must be > 0\n";
             return;
-        }*/
+        }
 
         if (!sheet_image.loadFromFile(sheet_image_path)) {
             std::cerr << "Error loading sprite sheet at path: " << sheet_image_path << '\n';
@@ -37,10 +37,14 @@ sprite_sheet::sprite_sheet(const std::filesystem::path& sheet_image_path,
                 std::vector<sf::Image> keyframes{};
 
                 // collect one frame from each horizontal block at the same relative x
-                for (unsigned int b = 0; b < sheet_size.x/block_offset; b++) {
+                for (unsigned int b = 0; b < sheet_size.x / block_offset; b++) {
                     unsigned int seq_x = keyframe_x + b * block_offsetx;
 
                     sf::Image frame{};
+                    if (width == 0 || height == 0) {
+                        std::cerr << "Invalid frame size while slicing sprite sheet: " << width << "x" << height << '\n';
+                        continue;
+                    }
                     frame.resize({width, height}, sf::Color::Transparent);
 
                     const sf::IntRect src_rect{
@@ -51,6 +55,10 @@ sprite_sheet::sprite_sheet(const std::filesystem::path& sheet_image_path,
                     if (frame.copy(sheet_image, {0, 0}, src_rect, true)) {
                         keyframes.push_back(frame);
                     }
+                }
+                if (keyframes.empty()) {
+                    std::cerr << "No frames copied for keyframe_x=" << keyframe_x
+                              << " keyframe_y=" << keyframe_y << " (check sheet layout/offsets)\n";
                 }
                 sprite_images.push_back(keyframes);   
             } 
